@@ -88,7 +88,7 @@ const holdScore = function () {
     score1EL.textContent = totalScorep2;
     currentScoreP2 = 0;
     current1EL.textContent = 0;
-    if (totalScorep2 >= 100) {
+    if (totalScorep2 >= 100 && totalScorep2 <= 100) {
       player1.classList.remove('player--active');
       player0.classList.remove('player--active');
       player1.classList.add('player--winner');
