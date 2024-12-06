@@ -2,14 +2,14 @@
 //Selecting elements
 let score0EL = document.getElementById('score--0');
 let score1EL = document.getElementById('score--1');
-const current0EL = document.getElementById('current--0');
-const current1EL = document.getElementById('current--1');
-const diceEL = document.querySelector('.dice');
-const btnNew = document.querySelector('.btn--new');
-const btnRoll = document.querySelector('.btn--roll');
-const player0 = document.querySelector('.player--0');
-const player1 = document.querySelector('.player--1');
-const btnHold = document.querySelector('.btn--hold');
+let current0EL = document.getElementById('current--0');
+let current1EL = document.getElementById('current--1');
+let diceEL = document.querySelector('.dice');
+let btnNew = document.querySelector('.btn--new');
+let btnRoll = document.querySelector('.btn--roll');
+let player0 = document.querySelector('.player--0');
+let player1 = document.querySelector('.player--1');
+let btnHold = document.querySelector('.btn--hold');
 
 // Starting Conditions
 score0EL.textContent = 0;
@@ -61,6 +61,7 @@ const rolling = function () {
 // if player click on Hold button
 const holdScore = function () {
   count++;
+  // totalScorep1 = 99;
   console.log(count);
   // background color and font style switch to the other player
   if (count % 2 !== 0) {
@@ -71,6 +72,14 @@ const holdScore = function () {
     score0EL.textContent = totalScorep1;
     currentScoreP1 = 0;
     current0EL.textContent = 0;
+    if (totalScorep1 >= 100 && totalScorep2 <= 100) {
+      player1.classList.remove('player--active');
+      player0.classList.remove('player--active');
+      player0.classList.add('player--winner');
+      diceEL.classList.add('hidden');
+      btnRoll.removeEventListener('click', rolling);
+      btnHold.removeEventListener('click', holdScore);
+    }
   } else if (count % 2 == 0) {
     player1.classList.remove('player--active');
     player0.classList.add('player--active');
@@ -79,7 +88,16 @@ const holdScore = function () {
     score1EL.textContent = totalScorep2;
     currentScoreP2 = 0;
     current1EL.textContent = 0;
+    if (totalScorep2 >= 100) {
+      player1.classList.remove('player--active');
+      player0.classList.remove('player--active');
+      player1.classList.add('player--winner');
+      diceEL.classList.add('hidden');
+      btnRoll.removeEventListener('click', rolling);
+      btnHold.removeEventListener('click', holdScore);
+    }
   }
+  console.log(totalScorep1, totalScorep2);
 };
 
 // New game
@@ -89,7 +107,12 @@ const newGame = function () {
   diceEL.classList.add('hidden');
   // remove that class to switch in player 1
   player1.classList.remove('player--active');
+  player0.classList.remove('player--winner');
+  player1.classList.remove('player--winner');
   player0.classList.add('player--active');
+  btnRoll.addEventListener('click', rolling);
+  btnHold.addEventListener('click', holdScore);
+
   // make both total score to 0
   score0EL.textContent = 0;
   score1EL.textContent = 0;
