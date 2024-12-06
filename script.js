@@ -42,7 +42,7 @@ const rolling = function () {
     // else if dice == 1 current score player 1 = 0
   } else if (dice == 1 && count % 2 == 0) {
     count++;
-    console.log(count);
+
     currentScoreP1 = 0;
     current0EL.textContent = 0;
     player0.classList.remove('player--active');
@@ -50,7 +50,7 @@ const rolling = function () {
     // else if dice == 1 current score player 2 = 0
   } else if (dice == 1 && count % 2 !== 0) {
     count++;
-    console.log(count);
+
     currentScoreP2 = 0;
     current1EL.textContent = 0;
     player1.classList.remove('player--active');
@@ -62,7 +62,7 @@ const rolling = function () {
 const holdScore = function () {
   count++;
   // totalScorep1 = 99;
-  console.log(count);
+
   // background color and font style switch to the other player
   if (count % 2 !== 0) {
     player0.classList.remove('player--active');
@@ -79,7 +79,7 @@ const holdScore = function () {
       diceEL.classList.add('hidden');
       btnRoll.removeEventListener('click', rolling);
       btnHold.removeEventListener('click', holdScore);
-    }
+    };
   } else if (count % 2 == 0) {
     player1.classList.remove('player--active');
     player0.classList.add('player--active');
@@ -95,9 +95,8 @@ const holdScore = function () {
       diceEL.classList.add('hidden');
       btnRoll.removeEventListener('click', rolling);
       btnHold.removeEventListener('click', holdScore);
-    }
-  }
-  console.log(totalScorep1, totalScorep2);
+    };
+  };
 };
 
 // New game
