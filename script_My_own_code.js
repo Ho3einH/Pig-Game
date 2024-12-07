@@ -79,7 +79,7 @@ const holdScore = function () {
       diceEL.classList.add('hidden');
       btnRoll.removeEventListener('click', rolling);
       btnHold.removeEventListener('click', holdScore);
-    };
+    }
   } else if (count % 2 == 0) {
     player1.classList.remove('player--active');
     player0.classList.add('player--active');
@@ -95,8 +95,8 @@ const holdScore = function () {
       diceEL.classList.add('hidden');
       btnRoll.removeEventListener('click', rolling);
       btnHold.removeEventListener('click', holdScore);
-    };
-  };
+    }
+  }
 };
 
 // New game
